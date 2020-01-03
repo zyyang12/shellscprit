@@ -1,0 +1,68 @@
+#记录Ubuntu下一些常用的脚本/命令
+
+**************************************
+Ubuntu下软件安装
+**************************************
+
+apt-cache search all #查看软件包列表
+apt-cache search all | grep XXX  #正则查询带有XXX标识符的软件包
+apt-get install XXX #安装软件包
+apt-get remove XXX #卸载软件包，保留配置文件
+apt-get purge remove XXX #卸载软件包，删除配置文件
+apt-get update #更新软件包列表
+apt-get autoclean #清空deb软件包
+dpkg -l #查看本机已安装的软件包，非常多
+apt-cache madison XXX  #查看服务器中软件版本列表
+sudo apt-get install XXX=<VERSION>  #安装对应版本软件
+
+**************************************
+cpu信息查询
+**************************************
+
+#查看cpu的型号
+grep "model name" /proc/cpuinfo |awk -F ':' '{print $NF}'
+
+#查看物理cpu的个数
+lscpu |grep "Socket" |awk '{print $NF}'
+
+#查看每个cpu的核数
+lscpu |grep "Core(s) per socket" |awk '{print $NF}'
+
+
+**************************************
+内存信息查询
+**************************************
+
+#查看内存卡槽数量
+dmidecode -t memory |grep "Number Of Devices" |awk '{print $NF}'
+
+#查看内存数量
+dmidecode -t memory |grep -A16 "Memory Device$" |grep 'Size:.*MB' |wc -l
+
+#查看内存支持类型
+dmidecode -t memory |grep -A16 "Memory Device$" |grep "Type:"
+
+#查看每个内存的速度
+dmidecode -t memory |grep -A16 "Memory Device$" |grep "Speed:"
+
+#查看每个内存的大小
+dmidecode -t memory |grep -A16 "Memory Device$" |grep "Size:"
+
+
+**************************************
+磁盘信息查询
+**************************************
+
+#查看硬盘的数量和大小
+fdisk -l |grep "Disk /dev/sd"
+
+#查看硬盘的型号
+hdparm -i /dev/sda |grep "Model"
+
+
+**************************************
+网络耗时信息查询
+**************************************
+
+#curl链路耗时分布
+curl -s -w '\n\n    time_namelookup:  %{time_namelookup}       time_connect:  %{time_connect}    time_appconnect:  %{time_appconnect}   time_pretransfer:  %{time_pretransfer}      time_redirect:  %{time_redirect} time_starttransfer:  %{time_starttransfer}                      ----------         time_total:  %{time_total}\n' "baidu.com"
