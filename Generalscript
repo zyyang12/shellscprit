@@ -66,3 +66,10 @@ hdparm -i /dev/sda |grep "Model"
 
 #curl链路耗时分布
 curl -s -w '\n\n    time_namelookup:  %{time_namelookup}       time_connect:  %{time_connect}    time_appconnect:  %{time_appconnect}   time_pretransfer:  %{time_pretransfer}      time_redirect:  %{time_redirect} time_starttransfer:  %{time_starttransfer}                      ----------         time_total:  %{time_total}\n' "baidu.com"
+
+
+**************************************
+文件/文件夹处理
+**************************************
+#当前文件夹下最大的文件/文件夹（非递归）
+du -s *|sort -nr |head -n1
