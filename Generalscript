@@ -73,3 +73,6 @@ curl -s -w '\n\n    time_namelookup:  %{time_namelookup}       time_connect:  %{
 **************************************
 #当前文件夹下最大的文件/文件夹（非递归）
 du -s *|sort -nr |head -n1
+
+#批量替换多个文件中的字符串
+sed -i "s/oldstring/newstring/g" `grep oldstring -rl yourdir`
