@@ -1,0 +1,19 @@
+查看某个时间点以后的log
+
+git log --since="Fri Aug 10 19:16:10 2012 +0800"
+
+或者用--until 查看某个时间点以前的log
+
+git log --before="Fri Aug 10 19:16:10 2012 +0800"
+
+获取某个时间点以后的commit，-n 1 表示只返回一个，最近的一个
+
+git rev-list -n 2 --since="Fri Aug 10 19:16:10 2012 +0800" yourbranch
+
+获取某个时间点以前的commit，-n 1 表示只返回一个，最近的一个 youbranch 为对应的分支名
+
+git rev-list -n 2 --before="Fri Aug 10 19:16:10 2012 +0800" yourbranch
+
+同步某个时间点前的代码，可用于追溯验证问题
+
+repo forall -c "git checkout `git rev-list -n 1 --before=\"Fri Jun 29 15:53:40 2012 +0800\" yourbranch`"
