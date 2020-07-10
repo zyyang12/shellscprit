@@ -76,3 +76,6 @@ du -s *|sort -nr |head -n1
 
 #批量替换多个文件中的字符串
 sed -i "s/oldstring/newstring/g" `grep oldstring -rl yourdir`
+
+git批量删除远端分支脚本
+git branch -a|awk -F '[. /]' '$5=="testing" &&$6<1600 {print $0}'
