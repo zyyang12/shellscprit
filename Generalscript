@@ -79,3 +79,6 @@ sed -i "s/oldstring/newstring/g" `grep oldstring -rl yourdir`
 
 git批量删除远端分支脚本
 git branch -a|awk -F '[. /]' '$5=="testing" &&$6<1600 {print $0}'
+
+awk通过正则筛选$2包含iflytek的内容
+docker ps|awk '{if($2 ~ /iflytek/) {print $1}}'
