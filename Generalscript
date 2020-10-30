@@ -82,3 +82,6 @@ git branch -a|awk -F '[. /]' '$5=="testing" &&$6<1600 {print $0}'
 
 awk通过正则筛选$2包含iflytek的内容
 docker ps|awk '{if($2 ~ /iflytek/) {print $1}}'
+
+awk根据筛选后的结果再进行二次筛选
+docker ps|awk '{if($2 ~ /esboost/) {split($2,arr,":");print arr[2]}}'
